@@ -6,6 +6,29 @@
     width: 100%;
 }
 
+.map-overlay-search {
+    position: absolute;
+    font: 15px/20px 'Times New Roman', sans-serif;
+    background: white;
+    top: 0;
+    left: 0;
+    margin: 10px 0 0 10px;
+    padding: 10px;
+    overflow: visible;
+}
+
+.geocoder {
+    position: relative;
+    margin: 10px 0 10px;
+}
+
+#returnbutton {
+    position: relative;
+    margin: 10px 0 10px;
+    width: 100%;
+}
+
+
 /* Styling the legend and its necessary components */
 .legend {
     position: absolute; 

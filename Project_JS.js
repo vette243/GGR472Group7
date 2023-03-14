@@ -31,25 +31,10 @@ map.addLayer({
             9, 1,
             12, 5
         ],
-    },
-        'circle-color': [
-            'match',
-        ['get', 'Interests'],
-        'Art', 
-        '#629628',
-        'Art, Architecture', 
-        '#939628',
-        'Art, Community', 
-        '#963F28',
-        'Art, Culture', 
-        '#962828',
-        'Art, History', 
-        '#4DBC00',
-        'Art, Mural', 
-        '#00BCA0',
-        ],
+   
+        'circle-color': 'black'
  //use case or match for this line to make categories
-    
+ },    
        'filter': ['any', 
        ['==', ['get', 'Interests'], 'Art'],
        ['==', ['get', 'Interests'], 'Art, Architecture'],
@@ -59,8 +44,6 @@ map.addLayer({
        ['==', ['get', 'Interests'], 'Art, Mural']]
 });
         
-
-
 //Drawing label layers for my filtered data
 map.addLayer ({
     'id':'Cu_At_Labels',
@@ -76,6 +59,7 @@ map.addLayer ({
     'paint':{
         'text-color':'black',
     },
+    
     'filter': ['any', 
         ['==', ['get', 'Interests'], 'Art'],
         ['==', ['get', 'Interests'], 'Art, Architecture'],
@@ -91,13 +75,23 @@ map.addLayer ({
 //INTERACTIVE SECTION 
 
 //Adding the search control to the map 
-map.addControl(
-    new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl:mapboxgl,
-        countries: "ca"
-    })
-);
+const geocoder = new MapboxGeocoder ({
+    accessToken: mapboxgl.accessToken,
+    mapbox: mapboxgl,
+    countries: "ca"
+})
+
+document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+//Adding the return to center button 
+document.getElementById('returnbutton').addEventListener('click', () => {
+    map.flyTo({
+        center: [-79.347015, 43.651070],
+        zoom: 10,
+        essential: true
+    });
+});
+
 
 //Adding the zoom and rotation controls in the map 
 map.addControl(new mapboxgl.NavigationControl());
@@ -123,28 +117,18 @@ map.on('mouseleave', 'Cu_At_Points', () => {
 map.on('click', 'Cu_At_Points', (e) => {
     new mapboxgl.Popup()
     .setLngLat(e.lngLat)
-    .setHTML("<b>Address:</b> " + e.features[0].properties.Address + "<br>")
+    .setHTML("<b>Address:</b> " + e.features[0].properties.Address + "<br>" + "<b>Interests:</b> " + e.features[0].properties.Interests + "<br>")
     .addTo(map);
 });
 
 //LEGEND SECTION 
 //Creating 4 Art legend type categories 
 const legendlabels = [
-    'Art',
-    'Art and Architecture',
-    'Art and Community',
-    'Art and Culture',
-    'Art and History',
-    'Art and Mural',
+    'Public Art'
 ]
 
 const legendcolours = [
-   '#629628',
-   '#939628',
-   '#963F28',
-   '#962828',
-   '#4DBC00',
-   '#00BCA0',
+   'black',
 ]
 
 //Calling the legend from my HTML page 
