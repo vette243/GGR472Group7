@@ -18,6 +18,21 @@ map.addSource ('Cultural_Attract', {
     'generateId': true
 });
 
+//add my TTC subway GeoJSON source.
+map.addSource('ttc-subway-lines', {
+    type: 'geojson',
+    data: 'https://zs106.github.io/ggr472lab2/ttc-subway-system.geojson'
+
+});
+
+map.addSource('ttc-subway-stations', {
+    type: 'geojson',
+    data: 'https://zs106.github.io/ggr472datasources/ttc_subway_stations.geojson'
+
+});
+
+
+
 //Drawing GEOJSON point as circles
 map.addLayer({
     'id': 'Cu_At_Points',
@@ -68,6 +83,35 @@ map.addLayer ({
         ['==', ['get', 'Interests'], 'Art, History'],
         ['==', ['get', 'Interests'], 'Art, Mural']]
         
+    });
+
+    //draw TTC system map geometry as lines.
+    map.addLayer({
+        'id': 'ttcsubwaylineslayer',
+        'type': 'line',
+        'source': 'ttc-subway-lines',
+        'paint': {
+            'line-color': '#ff69b4',
+            'line-width': 3
+        }
+    });
+
+    map.addLayer({
+        'id': 'ttcsubwaystationslayer',
+        'type': 'circle',
+        'source': 'ttc-subway-stations',
+        'paint': {
+            'circle-radius': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                8, 2,
+                12, 6
+            ],
+
+            //'circle-radius': 5,
+            'circle-color': 'red' 
+        }
     });
 
 });
@@ -124,11 +168,18 @@ map.on('click', 'Cu_At_Points', (e) => {
 //LEGEND SECTION 
 //Creating 4 Art legend type categories 
 const legendlabels = [
-    'Public Art'
+
+    'Public Art',
+    'Subway Lines',
+    "Subway Stations",
+
 ]
 
 const legendcolours = [
    'black',
+    '#ff69b4',
+    'red',
+
 ]
 
 //Calling the legend from my HTML page 
