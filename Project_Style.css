@@ -1,0 +1,55 @@
+/* Adding the style */
+.map {
+    position:absolute;
+    top: 0;
+    bottom:0;
+    width: 100%;
+}
+
+.map-overlay-search {
+    position: absolute;
+    font: 15px/20px 'Times New Roman', sans-serif;
+    background: white;
+    top: 0;
+    left: 0;
+    margin: 10px 0 0 10px;
+    padding: 10px;
+    overflow: visible;
+}
+
+.geocoder {
+    position: relative;
+    margin: 10px 0 10px;
+}
+
+#returnbutton {
+    position: relative;
+    margin: 10px 0 10px;
+    width: 100%;
+}
+
+
+/* Styling the legend and its necessary components */
+.legend {
+    position: absolute; 
+    background-color: #fff;
+    border-radius: 3px;
+    bottom: 0;
+    margin-bottom: 30px;
+    font: 15px/20px 'Times New Roman', sans-serif;
+    padding: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+.legend h4 {
+    margin: 0 0 10px;
+}
+
+.legend-key {
+    display: inline-block;
+    border-radius: 50%; /*Styling the border of the legend such that it curves*/
+    height: 10px; /*Styling the size of the circle*/
+    width: 10px;
+    margin-right: 5px; /*Styling the positon of the circle*/
+}

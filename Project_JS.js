@@ -32,6 +32,7 @@ map.addSource('ttc-subway-stations', {
 });
 
 
+
 //Drawing GEOJSON point as circles
 map.addLayer({
     'id': 'Cu_At_Points',
@@ -112,6 +113,7 @@ map.addLayer ({
             'circle-color': 'red' 
         }
     });
+
 });
 
 //INTERACTIVE SECTION 
@@ -166,9 +168,11 @@ map.on('click', 'Cu_At_Points', (e) => {
 //LEGEND SECTION 
 //Creating 4 Art legend type categories 
 const legendlabels = [
+
     'Public Art',
     'Subway Lines',
     "Subway Stations",
+
 ]
 
 const legendcolours = [
