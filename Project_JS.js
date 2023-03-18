@@ -31,9 +31,9 @@ map.on('load', () => {
 
     });
     //add Big parks' source
-    map.addSource('Big-Parks', {
+    map.addSource('Large-Park', {
         type: 'geojson',
-        data: 'https://github.com/vette243/GGR472Group7/blob/GreenSpaces/large_parks.geojson'
+        data: 'https://vette243.github.io/Lab3_GGR472/Green_Spaces.geojson'
     }
     )
 
@@ -121,28 +121,17 @@ map.on('load', () => {
     });
 //Draw polygon parks' polygon
     map.addLayer({
-         'id': 'Details',
+         'id': 'Large-Park',
+         'source': 'Large-Park',
          'type': 'fill',
-         'source': 'Big Park',
-         'paint': {
-            'fill-color': [
-            'step', 
-            ['get', 'POP2021'], 
-            '#fd8d3c', 
-            100000, '#fc4e2a', 
-            500000, '#e31a1c',
-            1000000, '#bd0026',
-            5000000, '#800026'
-        ],
-        'fill-opacity': 0.5,
-        'fill-outline-color': 'white'
-    }
+         'layout': {},
+         'paint':{
+            'fill-opacity': 0.5,
+            'fill-color': '#0080ff'
+         }      
+    })
 })
-
-
-
-
-});
+;
 
 //INTERACTIVE SECTION 
 
