@@ -55,11 +55,11 @@
 }
 /*styling .map-overlay-data data*/
 .map-overlay-data {
-    position: relative;
+    position: absolute;
     font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     background: rgba(255, 255, 255, 0.8);
     width: 260px;
-    top: 100px;
+    top: 150px;
     left: 10px;
     margin-top: 10px;
     padding: 10px;
