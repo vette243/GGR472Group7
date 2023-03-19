@@ -154,6 +154,7 @@ document.getElementById('returnbutton').addEventListener('click', () => {
 });
 
 
+
 //Adding the zoom and rotation controls in the map 
 map.addControl(new mapboxgl.NavigationControl());
 //Adding the fullscreen option in the map
@@ -189,6 +190,7 @@ const legendlabels = [
     'Public Art',
     'Subway Lines',
     "Subway Stations",
+    'Large Parks'
 
 ]
 
@@ -196,7 +198,7 @@ const legendcolours = [
     'black',
     '#ff69b4',
     'red',
-
+    '#0080ff'
 ]
 
 //Calling the legend from my HTML page 
@@ -220,6 +222,7 @@ legendlabels.forEach((label, i) => {
     legend.appendChild(item);
 });
 //Change display of legend based on check box
+
 let legendcheck = document.getElementById('legendcheck');
 
 legendcheck.addEventListener('click', () => {
@@ -232,9 +235,46 @@ legendcheck.addEventListener('click', () => {
         legendcheck.checked = false;
     }
 });
-document.getElementById('layercheck').addEventListener('change', (e) => {
+
+let layer1check=document.getElementById('Cu_At_Points');
+
+
+    layer1check.addEventListener('change', (e) => {
     map.setLayoutProperty(
-        'Area of Parks',
+        'Cu_At_Points',
+        'visibility',
+        e.target.checked ? 'visible' : 'none'
+    );
+});
+
+let layer2check=document.getElementById('ttcsubwaylineslayer');
+
+
+    layer2check.addEventListener('change', (e) => {
+    map.setLayoutProperty(
+        'ttcsubwaylineslayer',
+        'visibility',
+        e.target.checked ? 'visible' : 'none'
+    );
+});
+
+let layer3check=document.getElementById('ttcsubwaystationslayer');
+
+
+    layer3check.addEventListener('change', (e) => {
+    map.setLayoutProperty(
+        'ttcsubwaystationslayer',
+        'visibility',
+        e.target.checked ? 'visible' : 'none'
+    );
+});
+
+let layer4check=document.getElementById('Large-Park');
+
+
+    layer4check.addEventListener('change', (e) => {
+    map.setLayoutProperty(
+        'Large-Park',
         'visibility',
         e.target.checked ? 'visible' : 'none'
     );
