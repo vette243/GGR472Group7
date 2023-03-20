@@ -35,6 +35,7 @@
     background-color: #fff;
     border-radius: 3px;
     bottom: 0;
+    width: 260px;
     margin-bottom: 30px;
     font: 15px/20px 'Times New Roman', sans-serif;
     padding: 10px;
@@ -58,7 +59,7 @@
     position: absolute;
     font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     background: rgba(255, 255, 255, 0.8);
-    width: 260px;
+    width: 280px;
     top: 150px;
     left: 10px;
     margin-top: 10px;
