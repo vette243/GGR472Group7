@@ -97,7 +97,18 @@ map.on('load', () => {
         'type': 'line',
         'source': 'ttc-subway-lines',
         'paint': {
-            'line-color': '#ff69b4',
+            'line-color': [
+                'interpolate', ['linear'], ['get', 'RID'],
+                1,
+                '#f8c300',
+                2,
+                '#00923f',
+                3,
+                '#0082c9',
+                4,
+                '#a21a68'
+            ],
+            //'line-color': '#ff69b4', default color
             'line-width': 3
         }
     });
@@ -119,6 +130,7 @@ map.on('load', () => {
             'circle-color': 'red'
         }
     });
+
 //Draw polygon parks' polygon
     map.addLayer({
          'id': 'Large-Park',
@@ -183,12 +195,55 @@ map.on('click', 'Cu_At_Points', (e) => {
         .addTo(map);
 });
 
+
+
+
+
+//// do the similar thing for the click Popup for the subway station layers points
+map.on('click', 'ttcsubwaystationslayer', (e) => {
+    // Copy coordinates array, station name, subway lines.
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const name = e.features[0].properties.station;
+    const line = e.features[0].properties.line; 
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    
+    new mapboxgl.Popup()//Popup the target message.
+    .setLngLat(coordinates)
+    .setHTML('Station Name: ' + name + ' <br />Subway Line: ' + line)
+    .addTo(map);
+});
+     
+    // Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'ttcsubwaystationslayer', () => {
+    map.getCanvas().style.cursor = 'pointer';
+});
+     
+    // Change it back to a pointer when it leaves.
+map.on('mouseleave', 'ttcsubwaystationslayer', () => {
+    map.getCanvas().style.cursor = '';
+});
+
+
+
+
+
+
 //LEGEND SECTION 
 //Creating 4 Art legend type categories 
 const legendlabels = [
 
     'Public Art',
-    'Subway Lines',
+    'Subway Lines:',
+    ''+'LINE 1 (YONGE-UNIVERSITY)',
+    ''+'LINE 2 (BLOOR - DANFORTH)',
+    ''+'LINE 3 (SCARBOROUGH)',
+    ''+'LINE 4 (SHEPPARD)',
+    '',
     "Subway Stations",
     'Large Parks'
 
@@ -196,7 +251,12 @@ const legendlabels = [
 
 const legendcolours = [
     'black',
-    '#ff69b4',
+    '',
+    '#f8c300',
+    '#00923f',
+    '#0082c9',
+    '#a21a68',
+    '',
     'red',
     '#0080ff'
 ]
