@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
     zoom: 9,
 })
 
-//Adding GEOJSON source 
+//Adding GEOJSON source section
 map.on('load', () => {
 
     map.addSource('Cultural_Attract', {
@@ -39,7 +39,7 @@ map.on('load', () => {
 
 
 
-    //Drawing GEOJSON point as circles
+    //Drawing GEOJSON CULTURAl POINTS as circles
     map.addLayer({
         'id': 'Cu_At_Points',
         'type': 'circle',
@@ -54,7 +54,6 @@ map.on('load', () => {
             ],
 
             'circle-color': 'black'
-            //use case or match for this line to make categories
         },
         'filter': ['any',
             ['==', ['get', 'Interests'], 'Art'],
@@ -65,7 +64,7 @@ map.on('load', () => {
             ['==', ['get', 'Interests'], 'Art, Mural']]
     });
 
-    //Drawing label layers for my filtered data
+    //Drawing the CULTURAL POINT label layers for my filtered data
     map.addLayer({
         'id': 'Cu_At_Labels',
         'type': 'symbol',
@@ -150,7 +149,7 @@ map.on('load', () => {
 //Adding the search control to the map 
 const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    mapbox: mapboxgl,
+    mapboxgl: mapboxgl,
     countries: "ca"
 })
 
@@ -234,7 +233,7 @@ map.on('mouseleave', 'ttcsubwaystationslayer', () => {
 
 
 //LEGEND SECTION 
-//Creating 4 Art legend type categories 
+//Creating 1 Art legend type categories with additional categories such as SUBWAY LINES AND STATIONS, and TORONTO PARKS
 const legendlabels = [
 
     'Public Art',
@@ -248,7 +247,7 @@ const legendlabels = [
     'Large Parks'
 
 ]
-
+//Creating the legend colors for each of the categories that we have made above 
 const legendcolours = [
     'black',
     '',
@@ -295,47 +294,109 @@ legendcheck.addEventListener('click', () => {
         legendcheck.checked = false;
     }
 });
-
-let layer1check=document.getElementById('Cu_At_Points');
+//VORONOI LAYER CHECK 
+let layer1check=document.getElementById('voron-fill');
 
 
     layer1check.addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'voron-fill',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+});
+//CULTURAL POINTS LAYER CHECK
+let layer2check=document.getElementById('Cu_At_Points');
+
+
+    layer2check.addEventListener('change', (e) => {
     map.setLayoutProperty(
         'Cu_At_Points',
         'visibility',
         e.target.checked ? 'visible' : 'none'
     );
 });
+//TTC SUBWAYS LAYER CHECK
+let layer3check=document.getElementById('ttcsubwaylineslayer');
 
-let layer2check=document.getElementById('ttcsubwaylineslayer');
 
-
-    layer2check.addEventListener('change', (e) => {
+    layer3check.addEventListener('change', (e) => {
     map.setLayoutProperty(
         'ttcsubwaylineslayer',
         'visibility',
         e.target.checked ? 'visible' : 'none'
     );
 });
+//TTC STATIONS LAYER CHECK
+let layer4check=document.getElementById('ttcsubwaystationslayer');
 
-let layer3check=document.getElementById('ttcsubwaystationslayer');
 
-
-    layer3check.addEventListener('change', (e) => {
+    layer4check.addEventListener('change', (e) => {
     map.setLayoutProperty(
         'ttcsubwaystationslayer',
         'visibility',
         e.target.checked ? 'visible' : 'none'
     );
 });
+//TORONTO PARKS LAYER CHECK
+let layer5check=document.getElementById('Large-Park');
 
-let layer4check=document.getElementById('Large-Park');
 
-
-    layer4check.addEventListener('change', (e) => {
+    layer5check.addEventListener('change', (e) => {
     map.setLayoutProperty(
         'Large-Park',
         'visibility',
         e.target.checked ? 'visible' : 'none'
     );
 });
+
+//GIS ANALYSIS SECTION 
+
+//VORONOI SECTION 
+
+let cultural_points;
+//USING FETCH METHOD FOR MY CULTURAL POINTS
+fetch('https://gabcalayan.github.io/Project_Code/points-of-interest.geojson')
+    .then(response => response.json())
+    .then(response => {
+        cultural_points = response;
+});
+//LOADING THE BBOX for my CULTURAL POINTS 
+map.on('load', () => {
+    let bbox = turf.envelope(cultural_points);
+    const voronoiPolygons = turf.voronoi(cultural_points, bbox);
+//CREATING AN EMPTY VARIABLE FOR MY VORONOI 
+let voronoigeojson = {
+    "type": "FeatureCollection",
+    "features": []
+};
+//CREATING THE VORONOI POLYGONS TO THAT EMPTY VARIABLE
+voronoiPolygons.features.forEach((feature) => {
+    if (feature != null) {
+        let featurePush = {
+            "type": "Feature",
+            "properties": feature.properties,
+            "geometry": feature.geometry
+        }
+        voronoigeojson.features.push(featurePush);
+    }
+});
+//ADDING VORONOI POLYGON SOURCE 
+map.addSource('voronoi-poly', {
+    type: 'geojson',
+    data: voronoigeojson
+});
+//ADDING THE VORONOI LAYER 
+map.addLayer({
+    'id':'voron-fill',
+    'type': 'fill',
+    'source': 'voronoi-poly',
+    'paint': {
+        'fill-color': 'grey',
+        'fill-opacity': 0.3,
+        'fill-outline-color': 'black'
+    }
+});
+
+});
+

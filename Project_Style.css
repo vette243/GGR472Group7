@@ -1,16 +1,17 @@
-/* Adding the style */
+/* STYLING THE MAP */
 .map {
     position:absolute;
     top: 0;
     bottom:0;
     width: 100%;
 }
-
+/* STYLING THE MAP OVERLAY SEARCH BAR, GEOCODER, and RETURN BUTTON */
 .map-overlay-search {
     position: absolute;
     font: 15px/20px 'Times New Roman', sans-serif;
     background: white;
     top: 0;
+    width: 280px;
     left: 0;
     margin: 10px 0 0 10px;
     padding: 10px;
