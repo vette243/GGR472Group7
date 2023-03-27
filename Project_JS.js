@@ -318,8 +318,6 @@ let layer2check=document.getElementById('Cu_At_Points');
 });
 //TTC SUBWAYS LAYER CHECK
 let layer3check=document.getElementById('ttcsubwaylineslayer');
-
-
     layer3check.addEventListener('change', (e) => {
     map.setLayoutProperty(
         'ttcsubwaylineslayer',
@@ -329,8 +327,6 @@ let layer3check=document.getElementById('ttcsubwaylineslayer');
 });
 //TTC STATIONS LAYER CHECK
 let layer4check=document.getElementById('ttcsubwaystationslayer');
-
-
     layer4check.addEventListener('change', (e) => {
     map.setLayoutProperty(
         'ttcsubwaystationslayer',
@@ -340,8 +336,6 @@ let layer4check=document.getElementById('ttcsubwaystationslayer');
 });
 //TORONTO PARKS LAYER CHECK
 let layer5check=document.getElementById('Large-Park');
-
-
     layer5check.addEventListener('change', (e) => {
     map.setLayoutProperty(
         'Large-Park',
@@ -399,6 +393,7 @@ map.addLayer({
 });
 
 });
+
 
 
 //buffer section
