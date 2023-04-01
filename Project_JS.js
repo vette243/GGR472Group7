@@ -491,6 +491,7 @@ map.on('click', (e) => {
 /*--------------------------------------------------------------------
 STORE USER INPUT FEATURES AS GEOJSON
 --------------------------------------------------------------------*/
+
 let bufferAdded =false;
 document.getElementById('buffbutton').addEventListener('click', () => {
     if (!bufferAdded){
@@ -499,6 +500,7 @@ document.getElementById('buffbutton').addEventListener('click', () => {
          "type": "FeatureCollection",
          "features": []
     };
+
     //Loop through each point in geojson and use turf buffer function to create 0.5km buffer of input points
     //Add buffer polygons to buffresult feature collection
     geojson.features.forEach((feature) => {
@@ -522,6 +524,7 @@ document.getElementById('buffbutton').addEventListener('click', () => {
             'fill-outline-color': "black"
         }
     });
+
     bufferAdded=true;
     }else{
      map.removeLayer("inputpointbuff");
@@ -530,8 +533,9 @@ document.getElementById('buffbutton').addEventListener('click', () => {
 }
     document.getElementById('buffbutton').disabled = false; //disable  button after click
 
-});
 
+
+});
 
 
 

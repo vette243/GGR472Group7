@@ -1,20 +1,47 @@
-/* Adding the style */
+/* STYLING THE MAP */
 .map {
     position:absolute;
     top: 0;
     bottom:0;
     width: 100%;
 }
-
+/* STYLING THE MAP OVERLAY SEARCH BAR, GEOCODER, and RETURN BUTTON */
 .map-overlay-search {
     position: absolute;
     font: 15px/20px 'Times New Roman', sans-serif;
     background: white;
     top: 0;
+    width: 280px;
     left: 0;
     margin: 10px 0 0 10px;
     padding: 10px;
     overflow: visible;
+}
+
+.distance-panel {
+    position: relative;
+    font: 20px 'Times New Roman', sans-serif;
+    color: #3bb2d0;
+    display: block;
+}
+
+
+.distance-container {
+    position: relative;
+    z-index: 1;
+    width: 250px;
+
+}
+     
+.distance-container > * {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font: 15px 'Times New Roman', sans-serif;
+    line-height: 18px;
+    display: block;
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 .geocoder {
@@ -35,7 +62,8 @@
     background-color: #fff;
     border-radius: 3px;
     bottom: 0;
-    margin-bottom: 30px;
+    width: 260px;
+    margin-bottom: 10px;
     font: 15px/20px 'Times New Roman', sans-serif;
     padding: 10px;
     right: 10px;
@@ -58,7 +86,7 @@
     position: absolute;
     font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     background: rgba(255, 255, 255, 0.8);
-    width: 260px;
+    width: 280px;
     top: 150px;
     left: 10px;
     margin-top: 10px;
