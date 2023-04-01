@@ -491,12 +491,14 @@ map.on('click', (e) => {
 /*--------------------------------------------------------------------
 STORE USER INPUT FEATURES AS GEOJSON
 --------------------------------------------------------------------*/
-document.getElementById('buffbutton').addEventListener('click', () => {
 
-    //Create empty featurecollection for buffers
-    buffresult = {
-        "type": "FeatureCollection",
-        "features": []
+let bufferAdded =false;
+document.getElementById('buffbutton').addEventListener('click', () => {
+    if (!bufferAdded){
+         //Create empty featurecollection for buffers
+        buffresult = {
+         "type": "FeatureCollection",
+         "features": []
     };
 
     //Loop through each point in geojson and use turf buffer function to create 0.5km buffer of input points
@@ -523,29 +525,17 @@ document.getElementById('buffbutton').addEventListener('click', () => {
         }
     });
 
-    document.getElementById('buffbutton').disabled = true; //disable  button after click
+    bufferAdded=true;
+    }else{
+     map.removeLayer("inputpointbuff");
+     map.removeSource("buffgeojson");
+     bufferAdded=false;
+}
+    document.getElementById('buffbutton').disabled = false; //disable  button after click
+
+
 
 });
-
-
-//TODO: to be updated...
-/*
-distanceCheck.addEventListener('click', () => {//dafault box is checked.
-    if (distanceCheck.checked) {
-        distanceCheck.checked = true;
-        distanceContainer.style.display = 'block';
-    }
-    else {
-        distanceContainer.style.display = "none";
-        distanceCheck.checked = false;
-        geojson = emptygeojson;
-        map.removeLayer('input-pnts');
-        map.removeSource('inputgeojson');
-        map.removeLayer('inputpointbuff');
-        map.removeSource('buffgeojson');
-    }
-});
-*/
 
 
 
