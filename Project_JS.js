@@ -400,3 +400,229 @@ map.addLayer({
 
 });
 
+<<<<<<< HEAD
+=======
+
+//buffer section
+
+//Create empty GeoJSON objects to hold point features
+/*--------------------------------------------------------------------
+STORE USER INPUT FEATURES AS GEOJSON
+--------------------------------------------------------------------*/
+
+// Create empty GeoJSON objects to hold point features
+let geojson = {
+    'type': 'FeatureCollection',
+    'features': []
+};
+
+//Set data source and style on map load
+map.on('load', () => {
+    //Add datasource using GeoJSON variable
+    map.addSource('inputgeojson', {
+        type: 'geojson',
+        data: geojson
+    });
+
+    //Set style for when new points are added to the data source
+    map.addLayer({
+        'id': 'input-pnts',
+        'type': 'circle',
+        'source': 'inputgeojson',
+        'paint': {
+            'circle-radius': 2,
+            'circle-color': 'blue'
+        }
+    });
+
+});
+
+//Add input features to data source based on mouse click and display in map
+map.on('click', (e) => {
+    //Store clicked point as geojson feature
+    const clickedpoint = {
+        'type': 'Feature',
+        'geometry': {
+            'type': 'Point',
+            'coordinates': [e.lngLat.lng, e.lngLat.lat]
+        }
+    };
+
+    //Add clicked point to previously empty geojson FeatureCollection variable
+    geojson.features.push(clickedpoint);
+
+    //Update the datasource to include clicked points
+    map.getSource('inputgeojson').setData(geojson);
+
+});
+
+/*--------------------------------------------------------------------
+STORE USER INPUT FEATURES AS GEOJSON
+--------------------------------------------------------------------*/
+
+let bufferAdded =false;
+document.getElementById('buffbutton').addEventListener('click', () => {
+    if (!bufferAdded){
+         //Create empty featurecollection for buffers
+        buffresult = {
+         "type": "FeatureCollection",
+         "features": []
+    };
+
+    //Loop through each point in geojson and use turf buffer function to create 0.5km buffer of input points
+    //Add buffer polygons to buffresult feature collection
+    geojson.features.forEach((feature) => {
+        let buffer = turf.buffer(feature, 0.4);
+        buffresult.features.push(buffer);
+    });
+
+    map.addSource('buffgeojson', {
+        "type": "geojson",
+        "data": buffresult  //use buffer geojson variable as data source
+    })
+
+    //Show buffers on map using styling
+    map.addLayer({
+        "id": "inputpointbuff",
+        "type": "fill",
+        "source": "buffgeojson",
+        "paint": {
+            'fill-color': "blue",
+            'fill-opacity': 0.2,
+            'fill-outline-color': "black"
+        }
+    });
+
+    bufferAdded=true;
+    }else{
+     map.removeLayer("inputpointbuff");
+     map.removeSource("buffgeojson");
+     bufferAdded=false;
+}
+    document.getElementById('buffbutton').disabled = false; //disable  button after click
+
+
+
+});
+
+
+
+
+//Distance section
+
+//Create empty GeoJSON objects to hold point features
+/*--------------------------------------------------------------------
+STORE USER INPUT FEATURES AS GEOJSON
+--------------------------------------------------------------------*/
+const distancePanel= document.getElementById('dp');
+const distanceContainer = document.getElementById('distance');
+const distanceCheck = document.getElementById('distanceptslayer');
+const distance = 0;
+
+// Create empty GeoJSON objects to hold point features
+let distancegeojson  = {
+    'type': 'FeatureCollection',
+    'features': []
+};
+
+let emptygeojson = {
+    'type': 'FeatureCollection',
+    'features': []
+};
+//Set data source and style on map load
+map.on('load', () => {
+    //Add user points GeoJSON
+    map.addSource('distancepts', {
+        type: 'geojson',
+        data: distancegeojson
+    });
+
+    //draw the user points.
+    map.addLayer({
+        'id': 'distanceptslayer',
+        'type': 'circle',
+        'source': 'distancepts',
+        'paint': {
+            'circle-radius': 7,
+            'circle-color': '#3bb2d0'
+        }
+    });
+    
+
+});
+
+//Add input features to data source based on user mouse click and display in map
+map.on('click', (e) => {
+    if (distanceCheck.checked){//only applied when the distance layer/analysis is checked
+        distanceContainer.innerHTML = '';//initialize HTML properties.
+
+        if(distancegeojson.features.length > 1){//restrict to only 2 points, otherwise reset the user database
+            distancegeojson  = {
+                'type': 'FeatureCollection',
+                'features': []
+            };
+        }
+
+        //Store user clicked point as geojson feature
+        const distancepoint = {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [e.lngLat.lng, e.lngLat.lat] //store location
+            }
+            
+        };
+
+        //Add clicked point to previously empty geojson.
+        distancegeojson.features.push(distancepoint);
+
+        //Update the datasource to include user clicked points
+        map.getSource('distancepts').setData(distancegeojson);
+        
+        //initialize the text message
+        const value = document.createElement('pre');
+        const distance = turf.distance(distancegeojson.features[0], distancegeojson.features[1], 'kilometers');//apply distance turf.js analysis
+        //const distance = turf.length(linestring); //to be implemented in the future if available.
+        value.textContent = `The distance is ${distance.toLocaleString()}km`;//set text message.
+        distanceContainer.appendChild(value);//add to the styled container.
+    }else{
+        distanceContainer.removeChild;
+    }
+    
+
+});
+
+//below is to ensure the distance layer get reset if the distance layer is unchecked, 
+//to avoid it running in the background.
+distanceCheck.addEventListener('click', () => {//dafault box is checked, initialize the layer.
+    if (distanceCheck.checked) {
+        distanceCheck.checked = true;
+        distanceContainer.style.display = 'block';
+        distancePanel.style.display = 'block';
+        map.addSource('distancepts', {
+            type: 'geojson',
+            data: distancegeojson
+        });
+        //Set style for when new points are added to the data source
+        map.addLayer({
+            'id': 'distanceptslayer',
+            'type': 'circle',
+            'source': 'distancepts',
+            'paint': {
+                'circle-radius': 7,
+                'circle-color': '#3bb2d0'
+            }
+        });
+    }
+    else {//when unchecked, remove all variables related to the distance layer.
+        distanceContainer.style.display = "none";
+        distancePanel.style.display = 'none';
+        distanceCheck.checked = false;
+        //distancegeojson = emptygeojson;
+        map.removeLayer('distanceptslayer');
+        map.removeSource('distancepts');
+    }
+});
+
+
+>>>>>>> parent of 002ac5f (Home page &styling updated)

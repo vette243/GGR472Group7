@@ -16,6 +16,35 @@
     margin: 10px 0 0 10px;
     padding: 10px;
     overflow: visible;
+<<<<<<< HEAD
+=======
+}
+
+.distance-panel {
+    position: relative;
+    font: 20px 'Times New Roman', sans-serif;
+    color: #3bb2d0;
+    display: block;
+}
+
+
+.distance-container {
+    position: relative;
+    z-index: 1;
+    width: 250px;
+
+}
+     
+.distance-container > * {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font: 15px 'Times New Roman', sans-serif;
+    line-height: 18px;
+    display: block;
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 3px;
+>>>>>>> parent of 002ac5f (Home page &styling updated)
 }
 
 .geocoder {
