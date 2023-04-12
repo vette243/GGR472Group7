@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,20 +9,15 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!-- MAPBOX GEOCODER API -->
-    <script
-        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
-        type="text/css">
-
-    <!--library for connect us-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <!-- MAPBOX API -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
+    <script 
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+      type="text/css">
+    
+    <!-- MAPBOX API -->      
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script> 
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet'/>
 
     <!-- LINKING CSS STYLE SHEET -->
     <link rel="stylesheet" href="Project_Style.css">
@@ -32,202 +26,103 @@
     <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
 
     <title>Tourism Toronto Map</title>
-
 </head>
-
-
 <body>
-    <div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#cult_attract">Map</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#instruction">Instruction</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Group members
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#groupmembers">Who are we</a></li>
-                                <li><a class="dropdown-item" href="#contactus">Leave online comments on Github</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <h1>Toronto Tourism Map</h1>
-
-    <div>   
-    <img src="https://www.planetware.com/photos-large/CDN/canada-toronto-cn-tower.jpg">
-    </div>
-
-    <div id="instruction">
-    <h2>Instruction</h2>
-    <h3>
-        <p>
-            <br> 🌟keep layers checked to see TTC lines and all culture attractions<br>
-            <br><strong>For the best user expirence:<br><br>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp🔍Return to full extent before start<br><br>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp🔍Use each layer seperately<br><br>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp🔍Recommend viewing with Enter fullscreen<br><br>
-            </strong>
-            <br><br>
-            🌟Using the search bar to search for a location;<br>
-            <br>🌟Keep the Layer-Voronoi Polygon checked, to take a look of the cluster for attractions😊;<br>
-            <br>
-            🌟Remember to uncheck every layer that you don't want to use it(it will be erased everytime unchecked);<br>
-            <br>🌟Keep the distance layer checked, and you can see the distance for #2 recently point# that you clicked;<br>
-            <br>🌟Keep the button layer checked, click on a location you want,then click the "400m around me" button to see
-            attractions within 400m; <br><br>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp🌟double click the button if don't want to see the buffers 
-            
-            
-            <br><br><br><br>
-    </h3>
-
-</p>
-</div>
-
-<div id="map">
-    <h2>Tourism Map-Toronto<br><br><br></h2>
-</div>
-
-<div class='map' id='cult_attract'>
-    <div id='cult_attact'></div>
+    <!-- Adding the div tag for the map-->
+    <div id='cult_attract' class='map'></div>
+        
 
     <!-- Map Overlay Search -->
-     <div class='map-overlay-search'>
+    <div class = 'map-overlay-search'>
         <label>Search for location</label>
         <div id="geocoder" class="geocoder"></div>
-        <button type="button" class="btn btn-primary btn-sm" id="returnbutton"> Return to full extent</button>
+        <button type ="button" class="btn btn-primary btn-sm" id="returnbutton"> Return to full extent</button>
     </div>
 
-    <!--checkbox-->
-
-    <pre id="info"></pre>
-    <!-- INTERACTIVITY -->
-    <!-- LEGEND CHECKBOX LAYER-->
-    <div class='map-overlay-data'>
-        <label>Filter map view</label>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="legendcheck" checked>
-            <label class="form-check-label" for="flexCheckDefault">
-                Legend
-            </label>
-        </div>
-        <!-- VORONOI CHECKBOX LAYER -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="voron-fill" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Layer-Voronoi Polygon
-            </label>
-        </div>
-        <!--Buff LAYER-->
-        <div class="form-check">
-            <!--<input class="form-check-input" type="checkbox" value="" id="input-pnts" checked>-->
-            <input class="form-check-input" type="checkbox" value="" id="input-pnts" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Buffer Points
-            </label>
-        </div>
-
-        <!--Buffer Button-->
-        <div class='map-overlay'>
-            <button type="button" class="btn btn-primary btn-sm" id="buffbutton">400m Around Me</button>
-        </div>
-
-        <!--DISTANCE LAYER-->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="distanceptslayer" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Distance Layer
-            </label>
-        </div>
-        <!-- ATTRACTION CHECKBOX LAYER -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="Cu_At_Points" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Layer-Attraction
-            </label>
-        </div>
-        <!-- TTC SUBWAY LINES CHECKBOX LAYER -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="ttcsubwaylineslayer" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Layer-TTC lines
-            </label>
-        </div>
-        <!-- TTC STATIONS CHECKBOX LAYER -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="ttcsubwaystationslayer" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Layer-TTC Stations
-            </label>
-        </div>
-        <!-- TORONTO PARKS CHECKBOX LAYER -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="Large-Park" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Layer-Parks
-            </label>
-        </div>
-
-
-        <!-- Adding the legend using div-->
-        <div id='legend' class='legend'>
-            <h4>Legend</h4>
-        </div>
-
-
-        <!--Distance Display-->
-        <div id="dp" class="distance-panel">
-            Distance Panel
-        </div>
-
-        <div id="distance" class="distance-container">
-
-        </div>
-    </div></div>
-</div>
-
-<div id="groupmembers"  class="full-screen"><p>
-    😏Gabyrel Calayan<br>
-    😏 Zhengdong Song<br>
-    😏Yiyang Liu<br>
-</p>
-</div>
-    <!--connect us animation for webpage-->
-<div id="contactus">
-    <div class="wrapper">
-
-        <div class="button">
-            <div class="icon">
-                <i class="fab fa-github"></i>
-            </div>
-            <span onclick="myFunction()">Jump to Github</span>
-
-        </div>
-        </div>
+<!--checkbox-->
+<pre id="info"></pre>
+<!-- INTERACTIVITY -->
+<!-- LEGEND CHECKBOX LAYER-->
+<div class='map-overlay-data'>
+    <label>Filter map view</label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="legendcheck" checked>
+        <label class="form-check-label" for="flexCheckDefault">
+            Legend
+        </label>
+    </div>
+<!-- VORONOI CHECKBOX LAYER -->
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="voron-fill" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Layer-Voronoi Polygon
+        </label>
+    </div>
+<!--Buff LAYER-->
+    <div class="form-check">
+   <!--<input class="form-check-input" type="checkbox" value="" id="input-pnts" checked>-->     
+        <input class="form-check-input" type="checkbox" value="" id="input-pnts" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Buffer Points
+        </label>
     </div>
 
-</div>
+<!--Buffer Button-->
+    <div class='map-overlay'>
+        <button type="button" class="btn btn-primary btn-sm" id="buffbutton">400m Around Me</button>
+    </div>
+    
+<!--DISTANCE LAYER-->
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="distanceptslayer" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Distance Layer
+        </label>
+    </div>
+<!-- ATTRACTION CHECKBOX LAYER -->
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="Cu_At_Points" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Layer-Attraction
+        </label>
+    </div>
+<!-- TTC SUBWAY LINES CHECKBOX LAYER -->
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="ttcsubwaylineslayer" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Layer-TTC lines
+        </label>
+    </div>
+<!-- TTC STATIONS CHECKBOX LAYER -->   
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="ttcsubwaystationslayer" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Layer-TTC Stations
+        </label>
+    </div>
+<!-- TORONTO PARKS CHECKBOX LAYER -->
+     <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="Large-Park" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Layer-Parks
+        </label>
+    </div>
 
-     <!-- The JavaScript link-->
-<script src="Project_JS.js"></script>
+    <!-- Adding the legend using div-->
+    <div id='legend' class='legend'>
+        <h4>Legend</h4>
+    </div>
+    
+    <!--Distance Display-->
+    <div id="dp" class="distance-panel">
+        Distance Panel
+    </div>
 
+    <div id="distance" class="distance-container">
+    </div>
+
+
+    <!-- The JavaScript link-->
+    <script src="Project_JS.js"></script>
 </body>
-
 </html>
