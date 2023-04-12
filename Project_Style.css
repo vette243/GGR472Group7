@@ -1,21 +1,27 @@
 /* STYLING THE MAP */
 .map {
-    position:absolute;
-    top: 0;
-    bottom:0;
-    width: 100%;
-}
+    position:relative;
+    height:800px;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: auto;
+    padding-bottom: 100px;
+} 
+
 /* STYLING THE MAP OVERLAY SEARCH BAR, GEOCODER, and RETURN BUTTON */
 .map-overlay-search {
-    position: absolute;
+    position: relative;
     font: 15px/20px 'Times New Roman', sans-serif;
     background: white;
-    top: 0;
+    top: 200px;
     width: 280px;
     left: 0;
     margin: 10px 0 0 10px;
     padding: 10px;
     overflow: visible;
+    z-index: 1;
 }
 
 .distance-panel {
@@ -23,6 +29,7 @@
     font: 20px 'Times New Roman', sans-serif;
     color: #3bb2d0;
     display: block;
+    z-index: 4;
 }
 
 
@@ -33,7 +40,7 @@
 
 }
      
-.distance-container > * {
+.distance-container {
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     font: 15px 'Times New Roman', sans-serif;
@@ -67,7 +74,7 @@
     font: 15px/20px 'Times New Roman', sans-serif;
     padding: 10px;
     right: 10px;
-    z-index: 1;
+    z-index: 999;
 }
 
 .legend h4 {
@@ -87,9 +94,141 @@
     font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     background: rgba(255, 255, 255, 0.8);
     width: 280px;
-    top: 150px;
-    left: 10px;
-    margin-top: 10px;
+    bottom: 0;
+    right: 0;
     padding: 10px;
     overflow: visible;
+    z-index: 1;
 }
+
+/*styles for homepage*/
+
+
+    
+/* //button animation social media page*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html,body{
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+}
+.wrapper .button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover{
+  width: 200px;
+}
+.wrapper .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .button:nth-child(2):hover .icon{
+  background: #1DA1F2;
+}
+.wrapper .button:nth-child(3):hover .icon{
+  background: #E1306C;
+}
+.wrapper .button:nth-child(4):hover .icon{
+  background: #333;
+}
+.wrapper .button:nth-child(5):hover .icon{
+  background: #ff0000;
+}
+.wrapper .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon i{
+  color: #fff;
+}
+.wrapper .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1) span{
+  color: #4267B2;
+}
+.wrapper .button:nth-child(2) span{
+  color: #1DA1F2;
+}
+.wrapper .button:nth-child(3) span{
+  color: #E1306C;
+}
+.wrapper .button:nth-child(4) span{
+  color: #333;
+}
+.wrapper .button:nth-child(5) span{
+  color: #ff0000;
+}
+/*navigation bar styling*/
+nav {
+  display: flex; /* this makes the items inside the nav container appear in a row */
+}
+
+nav ul {
+  list-style: none; /* this removes the bullet points from the list items */
+  margin: 0; /* this removes the default margin from the list */
+  padding: 0; /* this removes the default padding from the list */
+}
+
+nav li {
+  margin-right: 10px; /* this adds a 10px space between each list item */
+}
+/*styling for heading1&2*/
+h2 {
+    margin-left:200px;
+    font-size: 24px; /* Set the font size to 24 pixels */
+    font-weight: bold; /* Set the font weight to bold */
+    color: #333; /* Set the text color to a dark gray */
+    margin-bottom: 10px; /* Add a margin below the heading */
+    text-align: center;
+  }
+h3 {
+    text-indent: 15ch;
+    margin-left: 200px;
+    font-size: 18px; /* Set the font size to 24 pixels */ 
+    color: #333; /* Set the text color to a dark gray */
+    margin-bottom: 10px; /* Add a margin below the heading */
+    text-align: left;
+    padding: 20px;
+  }
+  /*Styling for groupmember*/
+  .full-screen {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
