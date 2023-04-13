@@ -16,8 +16,6 @@
     margin: 10px 0 0 10px;
     padding: 10px;
     overflow: visible;
-<<<<<<< HEAD
-=======
 }
 
 .distance-panel {
@@ -44,7 +42,6 @@
     margin: 0;
     padding: 5px 10px;
     border-radius: 3px;
->>>>>>> parent of 002ac5f (Home page &styling updated)
 }
 
 .geocoder {
@@ -66,7 +63,7 @@
     border-radius: 3px;
     bottom: 0;
     width: 260px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font: 15px/20px 'Times New Roman', sans-serif;
     padding: 10px;
     right: 10px;
