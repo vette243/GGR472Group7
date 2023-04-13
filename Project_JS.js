@@ -430,7 +430,7 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'inputgeojson',
         'paint': {
-            'circle-radius': 2,
+            'circle-radius': 5,
             'circle-color': 'blue'
         }
     });
@@ -623,6 +623,8 @@ distanceCheck.addEventListener('click', () => {//dafault box is checked, initial
         map.removeSource('distancepts');
     }
 });
-
+function myFunction() 
+{ window.open("https://github.com/vette243/GGR472Group7", "_blank");
+}
 
 >>>>>>> parent of 002ac5f (Home page &styling updated)
