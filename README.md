@@ -8,8 +8,24 @@ In order to revive the tourism economy in Toronto from the negative effects of C
     - Public Parks (To promote environment - related tourism spots)
 
 Data sources: 
+    Cultural Attractions (Economic Development and Culture, 2022)
+    Green spaces (Parks, Forestry, and Recreation, 2022)
+    TTC Subway lines (Toronto Transit Commission, 2019)
+    TTC Subway Stations (ESRI Online, n.d.)
 
+Coding languages used:
+    JavaScript 
+    HTML 
+    CSS 
 
+Javascript methods 
+    Using mapbox gl JS methods from Mapbox: 
+    Geocoder 
+    Fly - to 
+    Zoom controls 
+    Legends 
+    Layer checks 
+    And much more! 
 
 
 We hope that you enjoy surfing around our web map and that you enjoy these places in our beautiful city! 

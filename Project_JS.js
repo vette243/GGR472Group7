@@ -138,7 +138,7 @@ map.on('load', () => {
          'layout': {},
          'paint':{
             'fill-opacity': 0.5,
-            'fill-color': '#0080ff'
+            'fill-color': 'green'
          }      
     })
 })
@@ -305,6 +305,38 @@ let layer1check=document.getElementById('voron-fill');
             e.target.checked ? 'visible' : 'none'
         );
 });
+
+//BUFFER LAYER CHECK 
+let layer6check=document.getElementById('input-pnts');
+
+
+    layer6check.addEventListener('change', (e) => {
+        map.setLayoutProperty(
+            'input-pnts',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+});
+
+//Distance LAYER CHECK 
+let layer7check=document.getElementById('distanceptslayer');
+
+
+    layer7check.addEventListener('change', (e) => {
+
+        map.setLayoutProperty(
+            'distanceptslayer',
+            'visibility',
+            e.target.checked ? 'visible' : 'none'
+        );
+        
+        distancegeojson  = {
+            'type': 'FeatureCollection',
+            'features': []
+        };
+
+});
+
 //CULTURAL POINTS LAYER CHECK
 let layer2check=document.getElementById('Cu_At_Points');
 
@@ -349,6 +381,8 @@ let layer5check=document.getElementById('Large-Park');
         e.target.checked ? 'visible' : 'none'
     );
 });
+
+
 
 //GIS ANALYSIS SECTION 
 
@@ -400,8 +434,6 @@ map.addLayer({
 
 });
 
-<<<<<<< HEAD
-=======
 
 //buffer section
 
@@ -627,4 +659,3 @@ function myFunction()
 { window.open("https://github.com/vette243/GGR472Group7", "_blank");
 }
 
->>>>>>> parent of 002ac5f (Home page &styling updated)
